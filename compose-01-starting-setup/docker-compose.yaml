@@ -1,0 +1,17 @@
+version: "3.8"
+services:
+  # frontend:
+  #   image: 
+
+  # backend:
+  #   image:
+  mongodb:
+    image: 'mongo'
+    volumes:
+      - data:/data/db
+    restart: always
+    env_file:
+      - ./env/mongo.env
+    ports:
+      - '27017:27017'
+  
