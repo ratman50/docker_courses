@@ -9,7 +9,8 @@ const morgan = require('morgan');
 const Goal = require('./models/goal');
 
 const app = express();
-
+const dotenv = require('dotenv');
+dotenv.config();
 const accessLogStream = fs.createWriteStream(
   path.join(__dirname, 'logs', 'access.log'),
   { flags: 'a' }
@@ -82,9 +83,11 @@ app.delete('/goals/:id', async (req, res) => {
     res.status(500).json({ message: 'Failed to delete goal.' });
   }
 });
-
+console.log("MONGO_USER: ", process.env.MONGO_USER);
+console.log(process.env.MONGO_USER);
+console.log(process.env.MONGO_PASSWORD);
 mongoose.connect(
-  `mongodb://${process.env.MONGODB_USERNAME}:${process.env.MONGODB_PASSWORD}@mongodb:27017/course-goals?authSource=admin`,
+  `mongodb+srv://${process.env.MONGO_USER}:${process.env.MONGO_PASSWORD}@cluster0.ffagtwk.mongodb.net/course-goals`,
   {
     useNewUrlParser: true,
     useUnifiedTopology: true,
