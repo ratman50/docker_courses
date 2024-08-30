@@ -1,1 +1,3 @@
 /__MACOSX
+#ignore all file .env
+*.env 
